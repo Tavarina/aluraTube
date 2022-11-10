@@ -8,25 +8,25 @@ import { StyledTimeline } from "../src/components/Timeline";
 function HomePage() {
 
     // const mensagem = "Bem vindo ao AluraTube!";
-    const estilosDaHomePage = { 
+    const estilosDaHomePage = {
         display: "flex",
         flexDirection: "column",
         flex: 1,
         //backgroundColor: "red"
-     }
+    }
 
     // console.log(config.playlists);
 
     return (
         <>
-        <CSSReset/>
-        <div style={estilosDaHomePage}>
-            <Menu/>
-            <Header/>
-            <Timeline playlists={config.playlists}>
-                Conte
-            </Timeline>
-        </div>
+            <CSSReset />
+            <div style={estilosDaHomePage}>
+                <Menu />
+                <Header />
+                <Timeline playlists={config.playlists}>
+                    Conte
+                </Timeline>
+            </div>
         </>
     );
 }
@@ -55,15 +55,17 @@ const StyledHeader = styled.div`
     padding: 16px 32px;
     gap: 16px;
  }`;
+ const StyledBanner = styled.div `
+ /* background-color: blue; */
+ background-image:  url(${({bg}) => bg});
+ height: 230px;
+ `;
 
 function Header() {
     return (
         <StyledHeader>
-
-            .user-info
-            {/* <img src="banner"
-         /> */}
-
+           {/* <Banner src="banner.jpg" /> */}
+    < StyledBanner bg={config.bg} />
             <section className="user-info">
                 <img src={`https://github.com/${config.github}.png`} />
                 <div>
@@ -107,7 +109,7 @@ function Timeline(props) {
                         </div>
                     </section>
                 )
-           })}
+            })}
         </StyledTimeline>
     )
 }
