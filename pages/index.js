@@ -1,28 +1,30 @@
 import React from "react";
 import config from "../config.json";
 import styled from "styled-components";
-import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
 
 
 function HomePage() {
     // const mensagem = "Bem vindo ao AluraTube!";
-    const estilosDaHomePage = {
-        // display: "flex",
-        // flexDirection: "column",
-        // flex: 1,
-        //backgroundColor: "red"
-    }
+    // const estilosDaHomePage = {
+    // display: "flex",
+    // flexDirection: "column",
+    // flex: 1,
+    //backgroundColor: "red"
+    // }
     const [valorDoFiltro, setValorDoFiltro] = React.useState("");
     //  const valorDoFiltro = "Library";
- 
 
     return (
         <>
-            <CSSReset />
-            <div style={estilosDaHomePage}>
-              {/* Prop Drilling  */}
+           
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                flex: 1
+            }}>
+                {/* Prop Drilling  */}
                 <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
                 <Header />
                 <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
@@ -42,8 +44,8 @@ export default HomePage
 //     )
 // }
 
-
 const StyledHeader = styled.div`
+background-color: ${({ theme }) => theme.backgroundLevel1};
  img{
  width:80px;
  height:80px;
@@ -57,17 +59,17 @@ const StyledHeader = styled.div`
     padding: 16px 32px;
     gap: 16px;
  }`;
- const StyledBanner = styled.div `
+const StyledBanner = styled.div`
  /* background-color: blue; */
- background-image:  url(${({bg}) => bg});
+ background-image:  url(${({ bg }) => bg});
  height: 230px;
  `;
 
 function Header() {
     return (
         <StyledHeader>
-           {/* <Banner src="banner.jpg" /> */}
-    < StyledBanner bg={config.bg} />
+            {/* <Banner src="banner.jpg" /> */}
+            < StyledBanner bg={config.bg} />
             <section className="user-info">
                 <img src={`https://github.com/${config.github}.png`} />
                 <div>
@@ -82,7 +84,7 @@ function Header() {
         </StyledHeader>
     )
 }
-function Timeline({searchValue, ...props}) {
+function Timeline({ searchValue, ...props }) {
     // console.log("Dentro do componente", props.playlists);
     const playlistsNames = Object.keys(props.playlists)
     //Statement
@@ -101,7 +103,7 @@ function Timeline({searchValue, ...props}) {
                             {videos.filter((video) => {
                                 const titleNormalized = video.title.toLowerCase();
                                 const searchValueNormalized = searchValue.toLowerCase();
-                              return titleNormalized.includes(searchValueNormalized)
+                                return titleNormalized.includes(searchValueNormalized)
                             }).map((video) => {
                                 return (
                                     <a key={video.url} href={video.url}>
