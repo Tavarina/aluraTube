@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components"
 
+
+//Home
+//Menu
+//Search
+//Informação sempre de cima para baixo
+
 const StyledSearch = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,10 +40,17 @@ const StyledSearch = styled.div`
   }
 `;
 
-export default function Search() {
+
+export default function Search({valorDoFiltro, setValorDoFiltro}) {
+  // const [valorDaBusca, setValorDaBusca] = React.useState("Library");
+  // console.log("Search", valorDaBusca)
+  const valorDaBusca = valorDoFiltro;
+  const setValorDaBusca = setValorDoFiltro;
   return (
     <StyledSearch>
-    <input type="text" />
+    <input type="text" onChange={(e)=>
+      setValorDaBusca(e.target.value)
+    } value={valorDaBusca} />
     <button>
        🔎
     </button>
